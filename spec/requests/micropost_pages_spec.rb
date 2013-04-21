@@ -41,5 +41,17 @@ describe "Micropost pages" do
         expect { click_link "delete" }.to change(Micropost, :count).by(-1)
       end
     end
+
+    describe "not poster" do
+      let!(:poster) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:micropost, user: poster)
+        visit user_path(poster)
+      end
+
+      it { should_not have_link "delete" }
+    end
+
+
   end
 end

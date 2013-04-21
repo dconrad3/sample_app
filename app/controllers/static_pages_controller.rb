@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  include MicropostsHelper
 
   def home
     if signed_in?

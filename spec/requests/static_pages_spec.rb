@@ -32,6 +32,15 @@ describe "Static pages" do
           page.should have_selector("li##{item.id}", text: item.content)
         end
       end
+
+      describe "pagination" do
+        it "should paginate the feed" do
+          30.times { FactoryGirl.create(:micropost, user: user, content: "Consectetur adipiscing elit") }
+          visit root_path
+          page.should have_selector("div.pagination")
+        end
+      end
+
     end
   end
 
